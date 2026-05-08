@@ -3,371 +3,1419 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Constantin Cranz</title>
-<meta name="description" content="A yearlong personal mentorship for the twelve who are ready. By application.">
-<meta name="theme-color" content="#1f1647">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="styles.css">
+<title>Constantin Cranz — The Sovereign Year</title>
+<meta name="description" content="A year for the entrepreneur who has already won and is asking what's next. Twelve operators. By application only.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #14110f;
+  --ink-deep: #0c0a09;
+  --ink-soft: #1d1916;
+  --ink-card: #1a1612;
+  --paper: #e9e2d2;
+  --paper-soft: #c5bda9;
+  --paper-dim: #8a8273;
+  --brass: #a08758;
+  --brass-light: #c4a878;
+  --brass-deep: #74633e;
+  --oxblood: #6b2f2f;
+  --hairline: #2a241e;
+  --hairline-soft: #3a322a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.005em;
+  overflow-x: hidden;
+}
+
+/* Subtle grain overlay for warmth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(160, 135, 88, 0.025) 0%, transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(107, 47, 47, 0.02) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.page { position: relative; z-index: 1; }
+
+/* ─────────────── TYPOGRAPHY ─────────────── */
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-feature-settings: 'ss01', 'ss02';
+  letter-spacing: -0.015em;
+  color: var(--paper);
+}
+
+.eyebrow {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+  font-style: normal;
+}
+
+.numeral {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--brass);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+em { font-style: italic; color: var(--paper); font-family: 'EB Garamond', Georgia, serif; }
+
+strong { font-weight: 500; color: var(--paper); }
+
+/* ─────────────── LAYOUT ─────────────── */
+
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.column {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.column-wide {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.divider-rule {
+  width: 1px;
+  height: 80px;
+  background: var(--brass-deep);
+  margin: 0 auto;
+  opacity: 0.5;
+}
+
+.ornament-rule {
+  text-align: center;
+  margin: 80px 0;
+  color: var(--brass);
+  font-size: 10px;
+  letter-spacing: 1.2em;
+}
+
+/* ─────────────── TOP BAR ─────────────── */
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.wordmark {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.wordmark-line {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--brass);
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+.top-meta {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+}
+
+/* ─────────────── HERO ─────────────── */
+
+.hero {
+  min-height: 100vh;
+  padding: 180px 0 120px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(160, 135, 88, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 50%, var(--ink-deep) 100%);
+  z-index: -1;
+}
+
+.hero-inner {
+  width: 100%;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 1.2s ease-out 0.2s forwards;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--brass);
+  vertical-align: middle;
+  margin: 0 18px 4px;
+  opacity: 0.6;
+}
+
+h1.hero-headline {
+  font-size: clamp(34px, 5.4vw, 62px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-feature-settings: 'ss01';
+  max-width: 920px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeUp 1.2s ease-out 0.4s forwards;
+}
+
+h1.hero-headline em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--brass-light);
+}
+
+.hero-lead {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(19px, 1.6vw, 22px);
+  line-height: 1.55;
+  color: var(--paper-soft);
+  max-width: 620px;
+  margin: 48px auto 0;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeUp 1.2s ease-out 0.7s forwards;
+}
+
+.hero-cta {
+  margin-top: 72px;
+  opacity: 0;
+  animation: fadeUp 1.2s ease-out 1s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────── BUTTONS ─────────────── */
+
+.btn {
+  display: inline-block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 22px 52px;
+  border: 1px solid var(--brass);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--brass);
+  color: var(--ink-deep);
+  letter-spacing: 0.32em;
+}
+
+.btn-primary {
+  background: var(--brass);
+  color: var(--ink-deep);
+  border-color: var(--brass);
+}
+
+.btn-primary:hover {
+  background: var(--brass-light);
+  border-color: var(--brass-light);
+  color: var(--ink-deep);
+}
+
+.btn-text {
+  display: inline-block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--brass-light);
+  border-bottom: 1px solid var(--brass-deep);
+  padding-bottom: 3px;
+  transition: all 0.3s ease;
+}
+
+.btn-text:hover {
+  color: var(--paper);
+  border-color: var(--brass);
+}
+
+/* ─────────────── SECTION HEADS ─────────────── */
+
+.section-head {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-head .eyebrow {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.section-head h2 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.section-head h2 em {
+  font-style: italic;
+  color: var(--brass-light);
+  font-weight: 300;
+}
+
+/* ─────────────── THRESHOLD ─────────────── */
+
+.threshold {
+  background: var(--ink-deep);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.threshold-body {
+  font-size: 21px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+}
+
+.threshold-body p {
+  margin-bottom: 28px;
+}
+
+.threshold-body p:last-child {
+  margin-bottom: 0;
+}
+
+.pull-quote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(24px, 2.4vw, 30px);
+  line-height: 1.4;
+  color: var(--brass-light);
+  text-align: center;
+  margin: 56px auto;
+  max-width: 680px;
+  letter-spacing: -0.01em;
+}
+
+/* ─────────────── YEAR · PRINCIPLE BLOCKS ─────────────── */
+
+.principles {
+  display: grid;
+  gap: 1px;
+  background: var(--hairline);
+  margin-top: 24px;
+  border: 1px solid var(--hairline);
+}
+
+@media (min-width: 720px) {
+  .principles { grid-template-columns: 1fr 1fr; }
+}
+
+.principle {
+  background: var(--ink);
+  padding: 56px 48px;
+  position: relative;
+}
+
+.principle .numeral {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.principle h3 {
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--paper);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.principle p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+}
+
+/* ─────────────── WHAT THIS PRODUCES ─────────────── */
+
+.outcomes {
+  background: var(--ink-deep);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.outcome-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 36px;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  align-items: start;
+}
+
+.outcome-row:last-child { border-bottom: none; }
+
+.outcome-row .numeral {
+  font-size: 14px;
+  padding-top: 6px;
+}
+
+.outcome-row h4 {
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--paper);
+  margin-bottom: 14px;
+  letter-spacing: -0.005em;
+}
+
+.outcome-row p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--paper-soft);
+}
+
+/* ─────────────── ABOUT ─────────────── */
+
+.about {
+  background: var(--ink);
+}
+
+.about-grid {
+  display: grid;
+  gap: 72px;
+  align-items: start;
+}
+
+@media (min-width: 880px) {
+  .about-grid {
+    grid-template-columns: 1fr 1.4fr;
+    gap: 88px;
+  }
+}
+
+.portrait-frame {
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(160deg, var(--ink-soft) 0%, var(--ink-deep) 100%);
+  border: 1px solid var(--hairline-soft);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait-frame::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--hairline);
+  pointer-events: none;
+}
+
+.portrait-placeholder {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--paper-dim);
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 0 32px;
+}
+
+.about-body h3 {
+  font-size: clamp(28px, 2.8vw, 36px);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  letter-spacing: -0.018em;
+}
+
+.about-body h3 em { font-style: italic; color: var(--brass-light); }
+
+.about-body p {
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--paper-soft);
+  margin-bottom: 22px;
+}
+
+.about-credentials {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline-soft);
+  display: grid;
+  gap: 18px;
+}
+
+.credential {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  font-size: 16px;
+  color: var(--paper-soft);
+}
+
+.credential .label {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  padding-top: 4px;
+}
+
+/* ─────────────── PRACTICAL ─────────────── */
+
+.practical {
+  background: var(--ink-deep);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.practical-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  margin-top: 32px;
+}
+
+@media (min-width: 720px) {
+  .practical-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .practical-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.practical-cell {
+  background: var(--ink-card);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.practical-cell .label {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 18px;
+}
+
+.practical-cell .value {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--paper);
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+
+.investment-note {
+  text-align: center;
+  margin-top: 56px;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--paper-dim);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ─────────────── APPLICATION ─────────────── */
+
+.application {
+  background: var(--ink);
+  padding: 140px 0;
+}
+
+.app-intro {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.app-intro h2 {
+  font-size: clamp(32px, 3.8vw, 46px);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+
+.app-intro h2 em { font-style: italic; color: var(--brass-light); }
+
+.app-intro p {
+  font-size: 18px;
+  color: var(--paper-soft);
+  font-style: italic;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+form.application-form {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 64px;
+  padding: 0;
+}
+
+fieldset legend {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline-soft);
+  display: block;
+  width: 100%;
+}
+
+.field {
+  margin-bottom: 32px;
+}
+
+.field-row {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 600px) {
+  .field-row.two { grid-template-columns: 1fr 1fr; }
+}
+
+label {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: 8px;
+  letter-spacing: 0.005em;
+}
+
+label .req {
+  color: var(--brass);
+  margin-left: 4px;
+}
+
+.field-help {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--paper-dim);
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  background: var(--ink-deep);
+  border: 1px solid var(--hairline-soft);
+  color: var(--paper);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 17px;
+  padding: 14px 18px;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--brass);
+  background: var(--ink-soft);
+}
+
+select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23a08758' stroke-width='1' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+textarea.tall { min-height: 160px; }
+
+.submit-row {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.privacy-note {
+  font-size: 13px;
+  color: var(--paper-dim);
+  font-style: italic;
+  margin-top: 24px;
+  line-height: 1.5;
+}
+
+button[type="submit"] {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 24px 64px;
+  background: var(--brass);
+  color: var(--ink-deep);
+  border: 1px solid var(--brass);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+button[type="submit"]:hover {
+  background: var(--brass-light);
+  border-color: var(--brass-light);
+  letter-spacing: 0.36em;
+}
+
+/* Success state */
+.app-success {
+  display: none;
+  text-align: center;
+  padding: 64px 32px;
+  border: 1px solid var(--hairline-soft);
+  background: var(--ink-deep);
+}
+
+.app-success.visible { display: block; }
+
+.app-success h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 32px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--brass-light);
+  margin-bottom: 24px;
+  letter-spacing: -0.015em;
+}
+
+.app-success p {
+  font-size: 18px;
+  color: var(--paper-soft);
+  line-height: 1.65;
+  max-width: 480px;
+  margin: 0 auto 16px;
+}
+
+/* ─────────────── PROCESS ─────────────── */
+
+.process {
+  background: var(--ink-deep);
+  border-top: 1px solid var(--hairline);
+}
+
+.process-list {
+  display: grid;
+  gap: 32px;
+  margin-top: 24px;
+  list-style: none;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.process-step:last-child { border-bottom: none; }
+
+.process-step .num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--brass);
+}
+
+.process-step h4 {
+  font-size: 19px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--paper);
+  margin-bottom: 10px;
+}
+
+.process-step p {
+  font-size: 17px;
+  color: var(--paper-soft);
+  line-height: 1.65;
+}
+
+/* ─────────────── CLOSING ─────────────── */
+
+.closing {
+  background: var(--ink);
+  text-align: center;
+  padding: 140px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.closing-quote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.5;
+  color: var(--brass-light);
+  max-width: 580px;
+  margin: 0 auto 48px;
+  letter-spacing: -0.01em;
+}
+
+.closing-cta {
+  margin-top: 32px;
+}
+
+/* ─────────────── FOOTER ─────────────── */
+
+footer {
+  background: var(--ink-deep);
+  padding: 56px 0 40px;
+  border-top: 1px solid var(--hairline);
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-mark {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.footer-mark span {
+  display: block;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--brass);
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+  text-transform: none;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--brass-light); }
+
+.footer-meta {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+  font-size: 13px;
+  color: var(--paper-dim);
+  font-style: italic;
+}
+
+/* ─────────────── RESPONSIVE ─────────────── */
+
+@media (max-width: 720px) {
+  .shell { padding: 0 24px; }
+  section { padding: 80px 0; }
+  .top-bar { padding: 24px; }
+  .hero { padding: 140px 0 80px; }
+  .principle { padding: 40px 28px; }
+  .practical-cell { padding: 32px 20px; }
+  .pull-quote { margin: 40px auto; font-size: 22px; }
+  .application { padding: 80px 0; }
+  fieldset { margin-bottom: 48px; }
+  .footer-grid { flex-direction: column; text-align: center; }
+}
+
+</style>
 </head>
 <body>
+<div class="page">
 
-<!-- ============== HEADER ============== -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="#top" class="brand-mark">
-      <div class="ornament">❖</div>
-      <div class="name">Constantin Cranz</div>
-      <div class="byline">The Sovereign Year</div>
-    </a>
-  </div>
-</header>
-
-<!-- ============== HERO ============== -->
-<section id="top" class="hero">
-  <div class="hero-ornament">❖</div>
-  <div class="hero-eyebrow">By Application</div>
-  <h1 class="hero-title">A year, walked together<em>For the twelve who are ready</em></h1>
-  <p class="hero-lead">The Sovereign Year is a yearlong personal container. One teacher. Twelve practitioners. Direct, sustained, intimate work — for those whose life is asking for the depth this year would offer.</p>
-  <div class="hero-actions">
-    <a href="#apply" class="btn btn-primary">Begin the Application</a>
-    <a href="#about" class="btn btn-secondary">Learn More</a>
-  </div>
-</section>
-
-<!-- ============== ABOUT CONSTANTIN ============== -->
-<section id="about" class="section">
-  <div class="section-inner narrow">
-    <div class="section-eyebrow">The Teacher</div>
-    <h2 class="section-title">Constantin Cranz</h2>
-
-    <img src="portrait.jpg" alt="Constantin Cranz" class="portrait-img">
-
-    <p class="lead">For more than thirty years, I have practiced and taught the principles of conscious creation — drawing on a synthesis of teachings from the Ascended Master traditions, A Course in Miracles, the Way of Mastery, the Law of Assumption, Walter Russell's cosmology, Advaita Vedanta, Tibetan Bon and Dzogchen, and the broader contemplative lineages.</p>
-
-    <p>The work I do is not coaching in the contemporary sense. It is not motivation. It is not problem-solving. It is the conscious art of living from the I AM that you already are — letting identity precede behaviour, letting the inner shape the outer, letting imagination do the creative work it was given to do.</p>
-
-    <p>I work with those who are ready to step out of seeking and into sovereign creation. Not beginners. Not those who need to be persuaded. Those whose life has brought them to a moment that requires a different kind of attention than they have been able to give themselves.</p>
-
-    <p>I am based in Medellín, Colombia, and work internationally with clients across many cultures and contexts. The Sovereign Year is the deepest container I offer.</p>
-  </div>
-</section>
-
-<!-- ============== THE YEAR ============== -->
-<section id="the-year" class="section section-paper">
-  <div class="section-inner narrow">
-    <div class="section-eyebrow">The Container</div>
-    <h2 class="section-title">What the Year Holds</h2>
-
-    <p class="lead">A private, year-long container in which a small cohort of twelve practitioners walks directly with me toward the embodied recognition of their own sovereign creation. Not a curriculum that ends. A year that is walked.</p>
-
-    <p>Time is part of the container. Six months in, what is happening cannot be made to happen in six weeks. A year, with proper containing, makes possible what shorter forms cannot.</p>
-
-    <div class="principle-block">
-      <div class="label">One</div>
-      <h4>Direct, Personal Contact</h4>
-      <p>Substantial individual time with me throughout the year — not a coaching program in the contemporary sense, but a real, ongoing relationship of mentorship. Held with rigor.</p>
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div>
+      <div class="wordmark">Constantin Cranz</div>
+      <div class="wordmark-line">By private engagement</div>
     </div>
-
-    <div class="principle-block">
-      <div class="label">Two</div>
-      <h4>The Field of Twelve</h4>
-      <p>The cohort is held at twelve. Small enough that each is fully attended to. Large enough that the field carries. Twice-monthly group sessions held privately, in the company of others walking the same depth.</p>
-    </div>
-
-    <div class="principle-block">
-      <div class="label">Three</div>
-      <h4>Movement Through Cycles</h4>
-      <p>The year moves through cycles — establishment, deepening, integration, embodiment. Each cycle has its own architecture. Each cycle moves the work to a different layer than the one before.</p>
-    </div>
-
-    <div class="principle-block">
-      <div class="label">Four</div>
-      <h4>An Investment That Matches the Depth</h4>
-      <p>The investment — financial, energetic, temporal — is significant. This is intentional. Practitioners who arrive at this work have generally moved through what shorter, lower-investment forms can deliver, and are ready for something whose weight matches the depth of what is being asked.</p>
-    </div>
+    <div class="top-meta">Est. 1994</div>
   </div>
-</section>
 
-<!-- ============== FOR WHOM ============== -->
-<section id="for-whom" class="section">
-  <div class="section-inner narrow">
-    <div class="section-eyebrow">Who This Is For</div>
-    <h2 class="section-title">And Who It Is Not</h2>
-
-    <p>This work is for those who have walked some form of inner work for years, perhaps decades. Those who have read deeply, sat in retreats, worked with teachers, and recognise that what is being offered here is what life is now asking of them.</p>
-
-    <p>It is for those who can hold the rigor of a year — financially, temporally, energetically. Those who arrive without needing to be convinced. Those who already know.</p>
-
-    <p>It is <em>not</em> for those new to inner work. It is not for those looking for transformation through a single offering. It is not for those who want a lower-cost version of the same. It is not the right container if you find yourself reading this and feeling pressure or sales language — neither of which I have any wish to put on you.</p>
-
-    <p class="lead-strong">If reading this stirs something — not a wanting, but a recognition — the application below is the next step.</p>
-  </div>
-</section>
-
-<!-- ============== INVESTMENT ============== -->
-<section id="investment" class="section section-paper">
-  <div class="section-inner narrow">
-    <div class="section-eyebrow">Practical Notes</div>
-    <h2 class="section-title">Time, Form, Investment</h2>
-
-    <div class="meta-grid">
-      <div class="meta-item">
-        <div class="meta-label">Duration</div>
-        <div class="meta-value">One year</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Cohort</div>
-        <div class="meta-value">Twelve practitioners</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Format</div>
-        <div class="meta-value">Online, with one in-person gathering</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Investment</div>
-        <div class="meta-value">Discussed in application</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="shell hero-inner">
+      <div class="hero-eyebrow eyebrow">The Sovereign Year</div>
+      <h1 class="hero-headline">
+        For the entrepreneur who has already won<br>
+        and is asking <em>what's next.</em>
+      </h1>
+      <p class="hero-lead">
+        The year that takes you past the edge of what striving can give. Twelve operators. By application only.
+      </p>
+      <div class="hero-cta">
+        <a href="#application" class="btn btn-primary">Begin the Application</a>
       </div>
     </div>
+  </section>
 
-    <p class="callout-text">The full structure of the year, the meeting schedule, the in-person gathering, and the investment are shared in the application conversation. Not because anything is hidden, but because the conversation itself is the right place for these specifics. <em>The number on a website does not match the gravity of a year.</em></p>
-  </div>
-</section>
-
-<!-- ============== APPLICATION FORM ============== -->
-<section id="apply" class="section section-application">
-  <div class="section-inner narrow">
-    <div class="section-eyebrow">The Door</div>
-    <h2 class="section-title">The Application</h2>
-
-    <p class="lead">The application is not a formality. It is the first conversation. Take your time with it — twenty or thirty minutes is appropriate. Write as you would write to a teacher you respect.</p>
-
-    <p>What you share here will be read carefully and personally. If the year is right for you, we will speak. If not, I will say so honestly.</p>
-
-    <form class="application-form" id="application-form" name="sovereign-year-application" method="POST" action="https://formspree.io/f/YOUR_FORM_ID_HERE">
-      <input type="hidden" name="_subject" value="Sovereign Year Application — New Inquiry">
-
-      <fieldset>
-        <legend>About You</legend>
-
-        <div class="form-field">
-          <label for="full-name">Your Full Name</label>
-          <input type="text" id="full-name" name="full_name" required>
-        </div>
-
-        <div class="form-field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-
-        <div class="form-field">
-          <label for="phone">Phone <span class="optional">(optional)</span></label>
-          <input type="tel" id="phone" name="phone">
-        </div>
-
-        <div class="form-field">
-          <label for="location">Where You Are Based</label>
-          <input type="text" id="location" name="location" placeholder="City, country, time zone" required>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Your Path</legend>
-
-        <div class="form-field">
-          <label for="practice-history">What is your current relationship to inner or spiritual work? How long have you been walking it?</label>
-          <textarea id="practice-history" name="practice_history" rows="5" required></textarea>
-          <div class="field-help">Traditions, practices, teachers, retreats, transformative experiences. The shape of your path so far.</div>
-        </div>
-
-        <div class="form-field">
-          <label for="lineages">Which traditions, teachers, or practices have shaped you most deeply?</label>
-          <textarea id="lineages" name="lineages" rows="4"></textarea>
-        </div>
-
-        <div class="form-field">
-          <label for="conscious-creation">How did you come to the Conscious Creation teaching, if you have encountered it?</label>
-          <textarea id="conscious-creation" name="conscious_creation" rows="3"></textarea>
-          <div class="field-help">The book, the app, the website, a session, word of mouth, or simply this page.</div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>This Moment</legend>
-
-        <div class="form-field">
-          <label for="what-is-alive">What is alive in your life right now that brings you to this inquiry?</label>
-          <textarea id="what-is-alive" name="what_is_alive" rows="6" required></textarea>
-          <div class="field-help">Personal life, work, vocation, transitions, longings, recognitions. Whatever feels true.</div>
-        </div>
-
-        <div class="form-field">
-          <label for="why-this-year">Why a year? Why now?</label>
-          <textarea id="why-this-year" name="why_this_year" rows="5" required></textarea>
-        </div>
-
-        <div class="form-field">
-          <label for="what-asking-for">What are you hoping to receive from a year of this work?</label>
-          <textarea id="what-asking-for" name="what_asking_for" rows="4" required></textarea>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Practical &amp; Honest</legend>
-
-        <div class="form-field">
-          <label for="capacity">Where are you in your life with regard to capacity for an investment of this depth — financially, temporally, energetically?</label>
-          <textarea id="capacity" name="capacity" rows="4" required></textarea>
-          <div class="field-help">Honesty here serves both of us. Stretches are fine; impossibilities are not. The investment will be discussed in conversation.</div>
-        </div>
-
-        <div class="form-field">
-          <label for="hesitations">What hesitations or concerns do you have?</label>
-          <textarea id="hesitations" name="hesitations" rows="3"></textarea>
-        </div>
-
-        <div class="form-field">
-          <label for="anything-else">Is there anything else you would like me to know?</label>
-          <textarea id="anything-else" name="anything_else" rows="4"></textarea>
-        </div>
-      </fieldset>
-
-      <div class="form-submit">
-        <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
-        <p class="form-disclaimer">Your application will be read personally. You will hear back within seven days, regardless of outcome.</p>
+  <!-- THRESHOLD -->
+  <section class="threshold">
+    <div class="shell column">
+      <div class="section-head">
+        <span class="eyebrow">The Threshold</span>
+        <h2>You have built it.<br><em>The next move is not bigger — it is deeper.</em></h2>
       </div>
-    </form>
+      <div class="threshold-body">
+        <p>You have done what most people only describe at dinner parties. You have built the company, made the money, bought the house, and held the marriage together. From the outside, you have arrived.</p>
 
-    <div id="form-success" class="form-success hidden">
-      <div class="success-mark">❖</div>
-      <h3>Received.</h3>
-      <p>Your application has arrived. I will read it personally — not today, but soon — and respond within seven days.</p>
-      <p>If the year is right for you, we will speak. If not, I will tell you honestly. Either way, the writing you just did is not lost. The clarity it surfaced is yours to keep.</p>
-      <p class="signature">— Constantin</p>
+        <p>And yet — there is a question you do not say out loud. The question that shows up at five in the morning when the room is quiet. Not a complaint. Not a regret. Simply: <em>is this what I built it for?</em></p>
+
+        <p>You have read the books. You have done the masterminds. You have run an executive coach for two years. You have done the ayahuasca retreat, the cold plunge, the breathwork, the silent retreat. Some of it helped. None of it finished the job.</p>
+
+        <p>The work you are looking for is not new. It is older than coaching, older than psychology, older than self-improvement. It is the work the people you most admire actually did, and rarely talk about. It is what is on the other side of striving.</p>
+      </div>
+
+      <div class="pull-quote">
+        Most coaching makes you produce more.<br>
+        This makes you stop needing to.<br>
+        The paradox is that the production goes up.
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============== WHAT HAPPENS NEXT ============== -->
-<section id="what-happens" class="section">
-  <div class="section-inner narrow">
-    <div class="section-eyebrow">After You Apply</div>
-    <h2 class="section-title">What Happens Next</h2>
-
-    <div class="step-list">
-      <div class="step">
-        <div class="step-num">One</div>
-        <div class="step-content">
-          <h4>Your application is received.</h4>
-          <p>You receive a brief confirmation email immediately. The application itself will be read by me, personally, within a few days.</p>
-        </div>
+  <!-- THE YEAR -->
+  <section>
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">The Year</span>
+        <h2>A year, walked together.<br><em>Twelve operators. One container.</em></h2>
       </div>
 
-      <div class="step">
-        <div class="step-num">Two</div>
-        <div class="step-content">
-          <h4>You hear back within seven days.</h4>
-          <p>Either I will write to invite a conversation, or I will write honestly to say the year is not the right form for you in this moment. There is no waiting in silence.</p>
-        </div>
+      <div class="column">
+        <p style="font-size: 19px; line-height: 1.7; color: var(--paper-soft); text-align: center; max-width: 580px; margin: 0 auto;">
+          The Sovereign Year is not a programme. It is a private year of work between you and one teacher who has practised this for thirty years. A small cohort moves alongside you. The architecture is precise. The work is not.
+        </p>
       </div>
 
-      <div class="step">
-        <div class="step-num">Three</div>
-        <div class="step-content">
-          <h4>If we speak, we speak.</h4>
-          <p>The first conversation is unhurried — typically sixty to ninety minutes. We meet each other, name what is alive, and discover together whether the year is the right container. Investment, structure, and dates are discussed openly.</p>
+      <div class="principles">
+        <div class="principle">
+          <span class="numeral">— I</span>
+          <h3>Direct Personal Contact</h3>
+          <p>Weekly one-to-one sessions for twelve months. Direct line for between-session contact. The work is personal because the man is. There is no faculty, no associate, no team. You work with Constantin.</p>
         </div>
-      </div>
 
-      <div class="step">
-        <div class="step-num">Four</div>
-        <div class="step-content">
-          <h4>Both of us decide.</h4>
-          <p>You decide whether this is what life is asking. I decide whether I am the right teacher for what is being asked. <em>Both must say yes.</em> If they do, the year begins.</p>
+        <div class="principle">
+          <span class="numeral">— II</span>
+          <h3>The Cohort of Twelve</h3>
+          <p>Eleven other operators of similar calibre walk the year alongside you. Quarterly intensives gather the cohort in person. The peers are the second mirror. Many lifelong relationships have begun this way.</p>
+        </div>
+
+        <div class="principle">
+          <span class="numeral">— III</span>
+          <h3>The Architecture</h3>
+          <p>The year is structured into four arcs that move from recognition through embodiment to demonstration. Each arc has its own work, its own tone, its own ground. The structure carries you when motivation does not.</p>
+        </div>
+
+        <div class="principle">
+          <span class="numeral">— IV</span>
+          <h3>Two In-Person Intensives</h3>
+          <p>Twice a year the work goes into the body, in person, in a setting chosen for the work. These are not retreats in the contemporary sense. They are the work, sustained over days, in proximity to the teacher and the cohort.</p>
         </div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- WHAT THIS PRODUCES -->
+  <section class="outcomes">
+    <div class="shell column-wide">
+      <div class="section-head">
+        <span class="eyebrow">What the Year Produces</span>
+        <h2>Not more.<br><em>Less of what was running you.</em></h2>
+      </div>
 
-<!-- ============== CLOSING ============== -->
-<section class="section section-closing">
-  <div class="section-inner narrow text-center">
-    <div class="closing-mark">❖</div>
-    <p class="closing-text">The teacher does not call.<br>Life calls.<br>If life is calling, the door is here.</p>
-    <a href="#apply" class="btn btn-primary btn-large" style="margin-top: 32px;">Begin the Application</a>
-  </div>
-</section>
+      <div class="outcome-row">
+        <span class="numeral">i.</span>
+        <div>
+          <h4>Decisions come faster, cleaner, with less second-guessing.</h4>
+          <p>You make ten major decisions a week. Each one currently costs you a small survival vote. After the year, decisions are made from a different ground. The deals you walk away from are the right ones. The deals you say yes to are the right ones. The exhaustion stops being structural.</p>
+        </div>
+      </div>
 
-<!-- ============== FOOTER ============== -->
-<footer class="site-footer">
-  <div class="footer-mark">❖</div>
-  <h3>Constantin Cranz</h3>
-  <div class="footer-tagline">The Sovereign Year</div>
-  <div class="footer-contact">
-    <a href="mailto:constantincranz@gmail.com">constantincranz@gmail.com</a>
-  </div>
-  <div class="footer-link-out">
-    For the teaching itself — books, app, course, group containers — visit <a href="https://www.consciouscreation.art">consciouscreation.art</a>
-  </div>
-  <div class="copyright">© Constantin Cranz · Medellín, Colombia</div>
-</footer>
+      <div class="outcome-row">
+        <span class="numeral">ii.</span>
+        <div>
+          <h4>The chase ends. The production does not.</h4>
+          <p>This is the punchline that is impossible to fake. Operators who stop needing more usually produce more, because desperation is a slow leak. Performance from sovereignty looks identical to performance from drive — except the operator does not burn out and the relationships around him do not burn down.</p>
+        </div>
+      </div>
+
+      <div class="outcome-row">
+        <span class="numeral">iii.</span>
+        <div>
+          <h4>You stop recruiting your life from your deficits.</h4>
+          <p>The marriage stops being a function of needing to be loved. The kids stop being a project. The house stops being a tomb. Every domain quietly de-transactionalises. This is the part you sense is broken and have no language for. It is also the part that, once it shifts, every relationship within reach will feel.</p>
+        </div>
+      </div>
+
+      <div class="outcome-row">
+        <span class="numeral">iv.</span>
+        <div>
+          <h4>Sovereignty becomes a competitive advantage.</h4>
+          <p>You can walk away from anything. You cannot be manipulated by money, fear, urgency, or flattery. Your word carries weight. Your presence becomes the asset. In rooms where everyone else is performing, you are the one who has stopped — and everyone in the room can feel it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="shell">
+      <div class="about-grid">
+        <div class="portrait-frame">
+          <img src="portrait.jpg" alt="Constantin Cranz" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        </div>
+        <div class="about-body">
+          <span class="eyebrow" style="display:block; margin-bottom: 24px;">About Constantin</span>
+          <h3>I have practised this for more than <em>thirty years.</em></h3>
+          <p>I am not a coach in the contemporary sense. I am a man who walked into the inner work in his early twenties, stayed for three decades, and now works with a small number of operators each year who have arrived at the threshold I once stood at.</p>
+
+          <p>The traditions I draw from are old. Saint Germain. The Way of Mastery. A Course in Miracles. Neville Goddard. Advaita Vedanta. Walter Russell. Adi Da. Tibetan Bon. I do not teach a religion. I teach the recognition that all these traditions, in their depth, point to.</p>
+
+          <p>I take twelve people each year. I take only those for whom the conversation will obviously work. I am not interested in convincing anyone of anything. I am interested in the moment of recognition that makes convincing unnecessary.</p>
+
+          <p>The work is causal. Identity precedes behaviour. Inner creates outer. Imagination is the primary creative tool. These are not opinions; they are the operating laws of how a life is built. After thirty years of practice and a decade of working with operators at this level, I can teach what I have lived.</p>
+
+          <div class="about-credentials">
+            <div class="credential">
+              <span class="label">Practising</span>
+              <span>Since 1994 — across three continents and multiple lineages</span>
+            </div>
+            <div class="credential">
+              <span class="label">Working with</span>
+              <span>Founders, operators, owners — primarily post-exit and at-scale</span>
+            </div>
+            <div class="credential">
+              <span class="label">Based in</span>
+              <span>Medellín, Colombia · Working internationally in English and Spanish</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICAL -->
+  <section class="practical">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Practical Notes</span>
+        <h2>The shape of the year, <em>at a glance.</em></h2>
+      </div>
+
+      <div class="practical-grid">
+        <div class="practical-cell">
+          <div class="label">Duration</div>
+          <div class="value">Twelve months</div>
+        </div>
+        <div class="practical-cell">
+          <div class="label">Cohort</div>
+          <div class="value">Twelve, by selection</div>
+        </div>
+        <div class="practical-cell">
+          <div class="label">Format</div>
+          <div class="value">1:1 weekly, plus cohort & two intensives</div>
+        </div>
+        <div class="practical-cell">
+          <div class="label">Investment</div>
+          <div class="value">Discussed in conversation</div>
+        </div>
+      </div>
+
+      <p class="investment-note">
+        The number is not on a website because the number on a website does not match the gravity of a year of personal work. We discuss it once we have established that the work is right for both of us.
+      </p>
+    </div>
+  </section>
+
+  <!-- APPLICATION -->
+  <section class="application" id="application">
+    <div class="shell">
+      <div class="app-intro">
+        <span class="eyebrow" style="display:block; margin-bottom: 28px;">The Application</span>
+        <h2>The application is the <em>first work.</em></h2>
+        <p>It is substantial because the year is. Take twenty or thirty minutes. Write honestly. The friction itself is part of the filter — for me, and for you.</p>
+      </div>
+
+      <div class="app-success" id="appSuccess">
+        <h3>Received.</h3>
+        <p>Your application has arrived. I will read it personally — not today, but soon — and respond within seven days.</p>
+        <p>If we are to speak, the next message you receive will be from me directly, suggesting times for an unhurried conversation.</p>
+      </div>
+
+      <form class="application-form" id="applicationForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+
+        <fieldset>
+          <legend>I · About You</legend>
+
+          <div class="field-row two">
+            <div class="field">
+              <label for="firstName">First name <span class="req">*</span></label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="field">
+              <label for="lastName">Last name <span class="req">*</span></label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="field-row two">
+            <div class="field">
+              <label for="phone">Phone (with country code)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 555 555 5555">
+            </div>
+            <div class="field">
+              <label for="location">Location</label>
+              <input type="text" id="location" name="location" placeholder="City, country">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>II · Your Position</legend>
+
+          <div class="field">
+            <label for="work">What do you do?</label>
+            <p class="field-help">A sentence or two on the company, your role, and the industry. Specifics, not titles.</p>
+            <textarea id="work" name="work" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="scale">Scale of operation <span class="req">*</span></label>
+            <p class="field-help">An honest bracket. There is no wrong answer; this is to ensure the work fits.</p>
+            <select id="scale" name="scale" required>
+              <option value="">Select one</option>
+              <option>Under $1M annual revenue / pre-exit early stage</option>
+              <option>$1M – $5M annual revenue / mid-stage</option>
+              <option>$5M – $25M annual revenue / established</option>
+              <option>$25M – $100M annual revenue / at-scale</option>
+              <option>$100M+ annual revenue / institutional</option>
+              <option>Post-exit, holding capital, choosing what's next</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="years">How long have you been at this chapter?</label>
+            <p class="field-help">Years in this current company, role, or chapter of work.</p>
+            <input type="text" id="years" name="years">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>III · Why You Are Here</legend>
+
+          <div class="field">
+            <label for="question">What is the question driving you to this page? <span class="req">*</span></label>
+            <p class="field-help">Not what you think the right answer is. The actual question. The one that arrives at 5am.</p>
+            <textarea id="question" name="question" class="tall" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="tired">What, specifically, are you tired of? <span class="req">*</span></label>
+            <p class="field-help">Be specific. The work calibrates to the truth, not the well-articulated version.</p>
+            <textarea id="tired" name="tired" required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="prior">What inner work have you already done?</label>
+            <p class="field-help">Teachers, traditions, programmes, retreats, plant medicine, therapy. What did and did not finish the job.</p>
+            <textarea id="prior" name="prior"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>IV · Practical & Honest</legend>
+
+          <div class="field">
+            <label for="capacity">Are you in a position to make a financial commitment in the range this work requires (mid-six-figures USD over the year)? <span class="req">*</span></label>
+            <select id="capacity" name="capacity" required>
+              <option value="">Select one</option>
+              <option>Yes — I have the liquidity for this commitment now</option>
+              <option>Yes — but it would require some structuring</option>
+              <option>Possibly — I would need to understand the figure first</option>
+              <option>Not at this time</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="timing">If accepted, when would you begin?</label>
+            <select id="timing" name="timing">
+              <option value="">Select one</option>
+              <option>Immediately — within thirty days</option>
+              <option>Within three months</option>
+              <option>Within six months</option>
+              <option>I am exploring; timing is not fixed</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="anything">Is there anything else I should know before reading this?</label>
+            <p class="field-help">Optional. A line about hesitation, a connection, a thing you wanted to say honestly.</p>
+            <textarea id="anything" name="anything"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="submit-row">
+          <button type="submit">Submit Application</button>
+          <p class="privacy-note">
+            Your application is read by Constantin personally. It is not stored in any system, not added to any list, and never seen by anyone else.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="shell column-wide">
+      <div class="section-head">
+        <span class="eyebrow">What Happens Next</span>
+        <h2>The honest version<br><em>of the process.</em></h2>
+      </div>
+
+      <ol class="process-list">
+        <li class="process-step">
+          <span class="num">i.</span>
+          <div>
+            <h4>Your application arrives.</h4>
+            <p>It comes to my private inbox. I read it personally. I do not skim. I do not delegate. If I am in retreat or with another cohort, the read may take a few days.</p>
+          </div>
+        </li>
+
+        <li class="process-step">
+          <span class="num">ii.</span>
+          <div>
+            <h4>Within seven days, you hear from me.</h4>
+            <p>Either I propose a conversation, or I tell you honestly that the work is not the right fit at this moment, with whatever reflection might be useful to you regardless. There is no automated system, no funnel, no follow-up sequence.</p>
+          </div>
+        </li>
+
+        <li class="process-step">
+          <span class="num">iii.</span>
+          <div>
+            <h4>If we speak, the conversation is unhurried.</h4>
+            <p>Sixty to ninety minutes. We are both feeling whether the work is right. This is not a sales call. It is the first piece of work itself. The investment number is discussed during this conversation, in context.</p>
+          </div>
+        </li>
+
+        <li class="process-step">
+          <span class="num">iv.</span>
+          <div>
+            <h4>If we both say yes, the year begins.</h4>
+            <p>You are sent the paperwork, the welcome materials, and the first session is scheduled. The cohort is introduced as it forms over the spots remaining in that year. The work begins immediately.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="shell column">
+      <span class="eyebrow" style="display: block; margin-bottom: 32px;">A Final Note</span>
+      <p class="closing-quote">
+        The teacher does not call.<br>
+        Life calls.<br>
+        If life is calling, the door is here.
+      </p>
+      <a href="#application" class="btn">Begin the Application</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-mark">
+          Constantin Cranz
+          <span>By private engagement</span>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:constantincranz@gmail.com">Direct contact</a>
+          <a href="https://consciouscreation.art" target="_blank">The teaching · Conscious Creation</a>
+        </div>
+      </div>
+      <div class="footer-meta">
+        © Constantin Cranz · For private engagement only · Practising since 1994
+      </div>
+    </div>
+  </footer>
+
+</div>
 
 <script>
-// Form submission - intercept and show success message
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('application-form');
-  const successMsg = document.getElementById('form-success');
+  const form = document.getElementById('applicationForm');
+  const success = document.getElementById('appSuccess');
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href').slice(1);
-      if (!targetId) return;
-      const target = document.getElementById(targetId);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // Form submit handler
   if (form) {
     form.addEventListener('submit', async function(e) {
-      // If the form action still contains the placeholder, prevent submission
-      // and show a development-mode success preview
-      if (form.action.includes('YOUR_FORM_ID_HERE')) {
-        e.preventDefault();
-        console.log('Form submission intercepted — replace YOUR_FORM_ID_HERE with real form handler');
+      e.preventDefault();
+      const data = new FormData(form);
+      const action = form.getAttribute('action');
+
+      // If formspree not yet wired, just show success state
+      if (action.includes('YOUR_FORM_ID_HERE')) {
         showSuccess();
         return;
       }
 
-      // Otherwise, allow real submission, then handle the response
-      e.preventDefault();
-      const formData = new FormData(form);
       try {
-        const response = await fetch(form.action, {
+        const res = await fetch(action, {
           method: 'POST',
-          body: formData,
+          body: data,
           headers: { 'Accept': 'application/json' }
         });
-        if (response.ok) {
+        if (res.ok) {
           showSuccess();
         } else {
-          alert('There was an issue submitting your application. Please try emailing constantincranz@gmail.com directly.');
+          alert('There was an issue submitting your application. Please email constantincranz@gmail.com directly.');
         }
       } catch (err) {
-        alert('There was an issue submitting your application. Please try emailing constantincranz@gmail.com directly.');
+        alert('There was an issue submitting your application. Please email constantincranz@gmail.com directly.');
       }
     });
   }
 
   function showSuccess() {
     form.style.display = 'none';
-    successMsg.classList.remove('hidden');
-    successMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    success.classList.add('visible');
+    success.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 });
 </script>
