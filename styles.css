@@ -248,6 +248,18 @@ strong { color: var(--indigo); font-weight: 600; }
   align-items: center;
 }
 
+.portrait-img {
+  display: block;
+  margin: 32px auto 48px;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
 .portrait-mark {
   font-family: 'Cormorant Garamond', serif;
   color: var(--gold);
